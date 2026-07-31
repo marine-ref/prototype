@@ -1,5 +1,8 @@
 "use client";
 
+import Image from "next/image";
+import Link from "next/link";
+
 export function DigitalTwinViewer({
   highlightPartId = "engine-oil",
 }: {
@@ -8,100 +11,122 @@ export function DigitalTwinViewer({
   const engineHot = highlightPartId === "engine-oil";
 
   return (
-    <section className="flex h-full min-h-[28rem] flex-col rounded-xl border border-line bg-surface">
-      <div className="border-b border-line px-4 py-3">
-        <h2 className="text-sm font-semibold">디지털트윈</h2>
-        <p className="text-xs text-muted">수리온 · 이상 부위 가시화</p>
-      </div>
-      <div className="relative flex flex-1 items-center justify-center bg-gradient-to-b from-slate-100 to-slate-200 p-4">
-        <svg
-          viewBox="0 0 400 220"
-          className="h-full max-h-64 w-full max-w-lg"
-          role="img"
-          aria-label="수리온 디지털트윈 개략도"
-        >
-          {/* fuselage */}
-          <ellipse cx="200" cy="120" rx="110" ry="28" fill="#64748b" />
-          <rect x="280" y="108" width="70" height="20" rx="6" fill="#64748b" />
-          {/* cabin */}
-          <path d="M110 110 Q130 85 170 95 L190 110 Z" fill="#94a3b8" />
-          {/* main rotor */}
-          <line
-            x1="80"
-            y1="88"
-            x2="320"
-            y2="88"
-            stroke="#475569"
-            strokeWidth="4"
-            strokeLinecap="round"
-          />
-          <circle cx="200" cy="88" r="8" fill="#334155" />
-          {/* tail rotor */}
-          <circle cx="350" cy="118" r="16" fill="none" stroke="#475569" strokeWidth="3" />
-          {/* skids */}
-          <line x1="130" y1="155" x2="250" y2="155" stroke="#334155" strokeWidth="3" />
-          <line x1="150" y1="140" x2="150" y2="155" stroke="#334155" strokeWidth="2" />
-          <line x1="230" y1="140" x2="230" y2="155" stroke="#334155" strokeWidth="2" />
-          {/* engine / oil system highlight */}
-          <g>
-            <rect
-              x="175"
-              y="100"
-              width="50"
-              height="32"
-              rx="4"
-              fill={engineHot ? "#fecaca" : "#cbd5e1"}
-              stroke={engineHot ? "#b91c1c" : "#64748b"}
-              strokeWidth={engineHot ? 3 : 1}
-            />
-            {engineHot ? (
-              <>
-                <circle cx="200" cy="116" r="18" fill="none" stroke="#b91c1c" strokeWidth="2" opacity="0.5">
-                  <animate
-                    attributeName="r"
-                    values="14;22;14"
-                    dur="2s"
-                    repeatCount="indefinite"
-                  />
-                  <animate
-                    attributeName="opacity"
-                    values="0.7;0.2;0.7"
-                    dur="2s"
-                    repeatCount="indefinite"
-                  />
-                </circle>
-                <text
-                  x="200"
-                  y="180"
-                  textAnchor="middle"
-                  className="fill-danger"
-                  fontSize="11"
-                  fontWeight="600"
-                >
-                  엔진 · 오일계통
-                </text>
-              </>
-            ) : null}
-          </g>
-        </svg>
-        <div className="absolute bottom-3 left-3 rounded-md bg-black/55 px-2 py-1 text-[11px] text-white">
-          Surion-KUH-01 · 실시간 매핑(시연)
+    <section className="flex h-full min-h-[28rem] flex-col overflow-hidden rounded-xl border border-line bg-surface shadow-sm">
+      <div className="flex items-start justify-between gap-3 border-b border-line px-4 py-3">
+        <div>
+          <h2 className="text-sm font-semibold">디지털트윈</h2>
+          <p className="text-xs text-muted">Surion KUH-1 · 계통 가시화</p>
+        </div>
+        <div className="flex items-center gap-1.5">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-60" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-500" />
+          </span>
+          <span className="text-[11px] font-medium text-ok">LIVE</span>
         </div>
       </div>
-      <div className="flex flex-wrap gap-1.5 border-t border-line p-3 text-xs">
-        {[
-          "교범",
-          "유사 고장",
-          "PHM",
-          "정비 가이드",
-          "이력",
-        ].map((label) => (
-          <span
-            key={label}
-            className="rounded-md border border-line bg-bg px-2 py-1 text-muted"
-          >
-            {label}
+
+      <div className="relative flex flex-1 items-center justify-center overflow-hidden bg-[#0a101c]">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-50"
+          style={{
+            background:
+              "radial-gradient(ellipse 70% 55% at 50% 48%, rgba(40,80,140,0.35), transparent 70%)",
+          }}
+        />
+
+        <div className="relative z-10 aspect-[16/9] w-full max-w-xl">
+          <Image
+            src="/twin/surion-side.png"
+            alt="수리온 KUH-1 디지털트윈"
+            fill
+            className="object-contain object-center drop-shadow-[0_20px_40px_rgba(0,0,0,0.55)]"
+            sizes="(max-width: 1280px) 100vw, 40vw"
+            priority
+            unoptimized
+          />
+
+          {engineHot ? (
+            <>
+              {/* engine bay — mid fuselage under main rotor mast */}
+              <div
+                className="pointer-events-none absolute"
+                style={{
+                  left: "42%",
+                  top: "46%",
+                  width: "14%",
+                  height: "16%",
+                  transform: "translate(-50%, -50%)",
+                }}
+              >
+                <span className="absolute inset-0 animate-ping rounded-full bg-red-500/30" />
+                <span className="absolute inset-[12%] rounded-full border-2 border-red-400/90 bg-red-500/25 shadow-[0_0_24px_rgba(239,68,68,0.65)]" />
+                <span className="absolute inset-[28%] rounded-full border border-dashed border-red-200/80" />
+              </div>
+
+              {/* callout */}
+              <div
+                className="absolute z-20"
+                style={{ left: "58%", top: "18%" }}
+              >
+                <div className="relative">
+                  <svg
+                    className="absolute -left-16 top-8 h-12 w-16 text-red-300"
+                    viewBox="0 0 64 48"
+                    fill="none"
+                    aria-hidden
+                  >
+                    <path
+                      d="M60 8 L18 36"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                    />
+                    <circle cx="14" cy="38" r="3" fill="currentColor" />
+                  </svg>
+                  <div className="rounded-lg border border-red-400/70 bg-black/80 px-3 py-2 shadow-lg backdrop-blur-sm">
+                    <p className="text-[11px] font-semibold text-red-200">
+                      엔진 · 오일계통
+                    </p>
+                    <p className="mt-0.5 text-[10px] text-slate-300">
+                      압력 저하 · 필터 점검 권고
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </>
+          ) : null}
+        </div>
+
+        <div className="absolute bottom-3 left-3 z-10 flex flex-wrap items-center gap-2">
+          <span className="rounded-md bg-black/55 px-2 py-1 text-[11px] text-white backdrop-blur-sm">
+            Surion-KUH-01
           </span>
+          {engineHot ? (
+            <span className="rounded-md bg-danger/90 px-2 py-1 text-[11px] font-medium text-white">
+              이상 부위 매핑
+            </span>
+          ) : null}
+        </div>
+        <div className="absolute bottom-3 right-3 z-10 rounded-md bg-black/45 px-2 py-1 text-[10px] text-slate-300 backdrop-blur-sm">
+          Twin · 시연 모드
+        </div>
+      </div>
+
+      <div className="flex flex-wrap gap-1.5 border-t border-line bg-surface p-3 text-xs">
+        {[
+          { label: "교범", href: "/manuals" },
+          { label: "유사 고장", href: "/failures" },
+          { label: "PHM", href: "/phm" },
+          { label: "정비 가이드", href: "/guide" },
+          { label: "이력", href: "/history" },
+        ].map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            className="rounded-md border border-line bg-bg px-2.5 py-1 text-muted transition hover:border-brand/40 hover:bg-brand-soft hover:text-brand"
+          >
+            {item.label}
+          </Link>
         ))}
       </div>
     </section>
