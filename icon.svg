@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+  <rect width="32" height="32" rx="7" fill="#1a3a6b"/>
+  <!-- main rotor -->
+  <line x1="5" y1="11" x2="27" y2="11" stroke="#f1f5f9" stroke-width="1.6" stroke-linecap="round"/>
+  <circle cx="15" cy="11" r="1.4" fill="#f8fafc"/>
+  <!-- mast -->
+  <rect x="14.2" y="11" width="1.6" height="4" rx="0.4" fill="#cbd5e1"/>
+  <!-- fuselage -->
+  <ellipse cx="14.5" cy="18" rx="7.5" ry="3.2" fill="#e2e8f0"/>
+  <!-- cockpit glass -->
+  <path d="M8.2 17.2 C9 15.6 11.2 15.2 12.8 15.8 L12.2 18.6 C10.4 18.8 8.6 18.4 8.2 17.2Z" fill="#93c5fd" opacity="0.9"/>
+  <!-- tail boom -->
+  <path d="M21 17.2 L28.5 15.6 L28.8 17.4 L22.2 19Z" fill="#cbd5e1"/>
+  <!-- fin -->
+  <path d="M26.2 15.8 L28 11.5 L29.2 11.8 L28.2 16.2Z" fill="#e2e8f0"/>
+  <!-- tail rotor -->
+  <circle cx="28.6" cy="14.2" r="2.2" stroke="#f1f5f9" stroke-width="1" fill="none"/>
+  <!-- skid -->
+  <path d="M10 21.5 H19" stroke="#94a3b8" stroke-width="1.2" stroke-linecap="round"/>
+  <!-- accent bar -->
+  <rect x="0" y="27.5" width="32" height="4.5" fill="#c45c26"/>
+</svg>
