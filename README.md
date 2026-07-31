@@ -9,8 +9,8 @@
 **GitHub Pages:** https://marine-ref.github.io/prototype/
 
 > 최초 1회: [Settings → Pages](https://github.com/marine-ref/prototype/settings/pages)  
-> Source = **GitHub Actions** → Save  
-> (`main` push 시 Actions가 정적 export를 Pages에 배포합니다.)
+> Source = **Deploy from a branch** → Branch = **`gh-pages` / `/ (root)`** → Save  
+> (`main` push 시 Actions가 `gh-pages`를 갱신합니다.)
 
 ## 주요 기능
 
