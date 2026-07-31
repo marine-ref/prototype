@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
+import { asset } from "@/lib/asset";
 
 export function DigitalTwinViewer({
   highlightPartId = "engine-oil",
@@ -9,6 +9,7 @@ export function DigitalTwinViewer({
   highlightPartId?: string;
 }) {
   const engineHot = highlightPartId === "engine-oil";
+  const twinSrc = asset("/twin/surion-side.png");
 
   return (
     <section className="flex h-full min-h-[28rem] flex-col overflow-hidden rounded-xl border border-line bg-surface shadow-sm">
@@ -36,19 +37,15 @@ export function DigitalTwinViewer({
         />
 
         <div className="relative z-10 aspect-[16/9] w-full max-w-xl">
-          <Image
-            src="/twin/surion-side.png"
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={twinSrc}
             alt="수리온 KUH-1 디지털트윈"
-            fill
-            className="object-contain object-center drop-shadow-[0_20px_40px_rgba(0,0,0,0.55)]"
-            sizes="(max-width: 1280px) 100vw, 40vw"
-            priority
-            unoptimized
+            className="absolute inset-0 h-full w-full object-contain object-center drop-shadow-[0_20px_40px_rgba(0,0,0,0.55)]"
           />
 
           {engineHot ? (
             <>
-              {/* engine bay — mid fuselage under main rotor mast */}
               <div
                 className="pointer-events-none absolute"
                 style={{
@@ -64,7 +61,6 @@ export function DigitalTwinViewer({
                 <span className="absolute inset-[28%] rounded-full border border-dashed border-red-200/80" />
               </div>
 
-              {/* callout */}
               <div
                 className="absolute z-20"
                 style={{ left: "58%", top: "18%" }}
